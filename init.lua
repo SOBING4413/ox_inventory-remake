@@ -14,7 +14,7 @@ end
 
 shared = {
     resource = GetCurrentResourceName(),
-    framework = GetConvar('inventory:framework', 'esx'),
+    framework = GetConvar('inventory:framework', 'esx'):lower(),
     playerslots = GetConvarInt('inventory:slots', 50),
     playerweight = GetConvarInt('inventory:weight', 30000),
     target = GetConvarInt('inventory:target', 0) == 1,
@@ -24,6 +24,10 @@ shared = {
 
 shared.dropslots = GetConvarInt('inventory:dropslots', shared.playerslots)
 shared.dropweight = GetConvarInt('inventory:dropweight', shared.playerweight)
+
+if shared.framework == 'qbcore' then
+    shared.framework = 'qb'
+end
 
 do
     if type(shared.police) == 'string' then
